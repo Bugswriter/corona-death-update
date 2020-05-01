@@ -4,7 +4,7 @@ I made this program, it will run in your computer background and give voice upda
 
 ## Installation
 
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install modules. It's better to use a python virtual environment.
 
 ```bash
 git clone https://github.com/Bugswriter/corona-death-update.git
