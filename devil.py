@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import os
 import random
+import datetime
 import time
 from gtts import gTTS
 from playsound import playsound
@@ -26,24 +27,26 @@ if __name__=="__main__":
     playsound("sounds/wel.mp3")
 
     while True:
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + ": "
         try:
             response = requests.get(url).json()
-            deaths = response["results"]["total_deaths"]
+            deaths = response["results"][0]["total_deaths"]
         except:
-            print("Something wrong with API 1")
-            print("Using API 2...")
+            print(timestamp + "Something wrong with API 1, Using API 2")
 
-        try:
-            response = requests.get(url2).json()
-            deaths = response['Global']['TotalDeaths']
-        except:
-            print("No API is working wait for few minutes")
+            try:
+                response = requests.get(url2).json()
+                deaths = response['Global']['TotalDeaths']
+            except:
+                print(timestamp + "No API is working wait for few minutes")
 
 
         if deaths_ < deaths:
-            print("Yo! Got an update")
+            print(timestamp + "Yo! Got an update")
             tellmenews(str(deaths-deaths_))
             deaths_ = deaths
+        else:
+            print(timestamp + "No new update right now")
 
 
         time.sleep(120)
